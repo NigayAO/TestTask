@@ -15,7 +15,10 @@
 		1D36A9CF283F8CC200494F39 /* TaskDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D36A9CE283F8CC200494F39 /* TaskDescription.swift */; };
 		1D36A9D5283F8D5A00494F39 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D36A9D4283F8D5A00494F39 /* NetworkManager.swift */; };
 		1D36A9D8283F8F7200494F39 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D36A9D7283F8F7200494F39 /* DataModel.swift */; };
-		1DE11D83283FE69D002A48A3 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE11D82283FE69D002A48A3 /* TableViewController.swift */; };
+		1DC80E062840D20400D4BDE8 /* MainTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC80E052840D20400D4BDE8 /* MainTableViewModel.swift */; };
+		1DC80E0B2840D27500D4BDE8 /* PictureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC80E0A2840D27500D4BDE8 /* PictureViewModel.swift */; };
+		1DC80E0D2840D27D00D4BDE8 /* SelectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC80E0C2840D27D00D4BDE8 /* SelectorViewModel.swift */; };
+		1DE11D83283FE69D002A48A3 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE11D82283FE69D002A48A3 /* MainTableViewController.swift */; };
 		1DE700CF28400EFA00EA3BEC /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE700CE28400EFA00EA3BEC /* PictureViewController.swift */; };
 		1DE700D3284010A800EA3BEC /* SelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE700D2284010A800EA3BEC /* SelectorTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -31,7 +34,10 @@
 		1D36A9CE283F8CC200494F39 /* TaskDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDescription.swift; sourceTree = "<group>"; };
 		1D36A9D4283F8D5A00494F39 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1D36A9D7283F8F7200494F39 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
-		1DE11D82283FE69D002A48A3 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		1DC80E052840D20400D4BDE8 /* MainTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewModel.swift; sourceTree = "<group>"; };
+		1DC80E0A2840D27500D4BDE8 /* PictureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewModel.swift; sourceTree = "<group>"; };
+		1DC80E0C2840D27D00D4BDE8 /* SelectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorViewModel.swift; sourceTree = "<group>"; };
+		1DE11D82283FE69D002A48A3 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		1DE700CE28400EFA00EA3BEC /* PictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
 		1DE700D2284010A800EA3BEC /* SelectorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,10 +85,10 @@
 		1D36A9D0283F8D1200494F39 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				1D36A9CE283F8CC200494F39 /* TaskDescription.swift */,
 				1D36A9BA283F8CB900494F39 /* AppDelegate.swift */,
 				1D36A9BC283F8CB900494F39 /* SceneDelegate.swift */,
 				1D36A9C8283F8CB900494F39 /* Info.plist */,
+				1D36A9CE283F8CC200494F39 /* TaskDescription.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -107,9 +113,9 @@
 		1D36A9D3283F8D4400494F39 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				1DE11D82283FE69D002A48A3 /* TableViewController.swift */,
-				1DE700CE28400EFA00EA3BEC /* PictureViewController.swift */,
-				1DE700D2284010A800EA3BEC /* SelectorTableViewController.swift */,
+				1DC80E072840D20C00D4BDE8 /* MainScreen - TableViewController */,
+				1DC80E082840D25700D4BDE8 /* Picture */,
+				1DC80E092840D26600D4BDE8 /* Selector */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -128,6 +134,33 @@
 				1D36A9D7283F8F7200494F39 /* DataModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1DC80E072840D20C00D4BDE8 /* MainScreen - TableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1DE11D82283FE69D002A48A3 /* MainTableViewController.swift */,
+				1DC80E052840D20400D4BDE8 /* MainTableViewModel.swift */,
+			);
+			path = "MainScreen - TableViewController";
+			sourceTree = "<group>";
+		};
+		1DC80E082840D25700D4BDE8 /* Picture */ = {
+			isa = PBXGroup;
+			children = (
+				1DE700CE28400EFA00EA3BEC /* PictureViewController.swift */,
+				1DC80E0A2840D27500D4BDE8 /* PictureViewModel.swift */,
+			);
+			path = Picture;
+			sourceTree = "<group>";
+		};
+		1DC80E092840D26600D4BDE8 /* Selector */ = {
+			isa = PBXGroup;
+			children = (
+				1DE700D2284010A800EA3BEC /* SelectorTableViewController.swift */,
+				1DC80E0C2840D27D00D4BDE8 /* SelectorViewModel.swift */,
+			);
+			path = Selector;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,12 +234,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DE11D83283FE69D002A48A3 /* TableViewController.swift in Sources */,
+				1DE11D83283FE69D002A48A3 /* MainTableViewController.swift in Sources */,
+				1DC80E0D2840D27D00D4BDE8 /* SelectorViewModel.swift in Sources */,
+				1DC80E0B2840D27500D4BDE8 /* PictureViewModel.swift in Sources */,
 				1D36A9CF283F8CC200494F39 /* TaskDescription.swift in Sources */,
 				1D36A9D5283F8D5A00494F39 /* NetworkManager.swift in Sources */,
 				1D36A9BB283F8CB900494F39 /* AppDelegate.swift in Sources */,
 				1D36A9BD283F8CB900494F39 /* SceneDelegate.swift in Sources */,
 				1DE700D3284010A800EA3BEC /* SelectorTableViewController.swift in Sources */,
+				1DC80E062840D20400D4BDE8 /* MainTableViewModel.swift in Sources */,
 				1D36A9D8283F8F7200494F39 /* DataModel.swift in Sources */,
 				1DE700CF28400EFA00EA3BEC /* PictureViewController.swift in Sources */,
 			);

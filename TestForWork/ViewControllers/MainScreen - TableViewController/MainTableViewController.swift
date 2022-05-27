@@ -7,88 +7,74 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
-    
-    var data: IncomeData!
-    var array = [String]()
-    var selectedCell: InternalData!
-    
-    private let seguePicture = "withImage"
-    private let segueSelector = "withSelector"
+class MainTableViewController: UITableViewController {
+        
+    private var viewModel: MainTableViewModelProtocol! {
+        didSet {
+            viewModel.fetchData {
+                self.tableView.reloadData()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Test Task"
-        fetchData()
+        viewModel = MainTableViewModel()        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             
-        case seguePicture:
+        case viewModel.seguePicture:
             guard let pictureVC = segue.destination as? PictureViewController else { return }
-            pictureVC.receivedData = selectedCell
+            pictureVC.viewModel = sender as? PictureViewModelProtocol
             
         default:
             guard let selectorTVC = segue.destination as? SelectorTableViewController else { return }
-            selectorTVC.receivedData = selectedCell
+            selectorTVC.viewModel = sender as? SelectorTableViewModelProtocol
         }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        array.count
+        viewModel.numberOfCells
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "data", for: indexPath)
         
-        let example = array[indexPath.row]
+        let titleForCell = viewModel.cellElements[indexPath.row]
 
         var content = cell.defaultContentConfiguration()
-        content.text = example
+        content.text = titleForCell
         cell.contentConfiguration = content
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectCell = array[indexPath.row]
+        let selectedCell = viewModel.cellElements[indexPath.row]
+        let transferData = viewModel.transferData(name: selectedCell)
         
-        for item in data.data {
-            if item.name == selectCell {
-                selectedCell = item.data
-            }
-        }
-        
-        switch selectCell {
+        switch selectedCell {
         case "hz":
-            guard let text = selectedCell.text else { return }
-            showAlert(title: selectCell, message: text)
+            guard let text = transferData.text else { return }
+            showAlert(title: selectedCell, message: text)
+            
         case "picture":
-            performSegue(withIdentifier: seguePicture, sender: self)
+            let pictureViewModel = PictureViewModel(receivedData: transferData)
+            performSegue(withIdentifier: viewModel.seguePicture, sender: pictureViewModel)
+            
         default:
-            performSegue(withIdentifier: segueSelector, sender: self)
+            let selectorTVCViewModel = SelectorTableViewModel(receivedData: transferData)
+            performSegue(withIdentifier: viewModel.segueSelector, sender: selectorTVCViewModel)
         }
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
 //MARK: - Private methods
-extension TableViewController {
-    private func fetchData() {
-        NetworkManager.shared.fetchData { result in
-            switch result {
-            case .success(let data):
-                self.data = data
-                self.array = data.view
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
+extension MainTableViewController {
     
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: "ID - \(title)", message: message, preferredStyle: .alert)

@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Test Task-->
         <scene sceneID="99Z-ZC-b6r">
             <objects>
-                <tableViewController modalPresentationStyle="fullScreen" id="Ea9-kb-XKG" customClass="TableViewController" customModule="TestForWork" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController modalPresentationStyle="fullScreen" id="Ea9-kb-XKG" customClass="MainTableViewController" customModule="TestForWork" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="8KC-Jj-mBk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,7 +31,7 @@
                             <outlet property="delegate" destination="Ea9-kb-XKG" id="f89-Sp-efA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="FM4-94-o7N"/>
+                    <navigationItem key="navigationItem" title="Test Task" id="FM4-94-o7N"/>
                     <connections>
                         <segue destination="Il0-BJ-9Bs" kind="show" identifier="withImage" id="f2q-sT-wFs"/>
                         <segue destination="Jw8-aI-dL5" kind="show" identifier="withSelector" id="4aZ-ht-C5y"/>
@@ -41,7 +41,7 @@
             </objects>
             <point key="canvasLocation" x="801" y="98"/>
         </scene>
-        <!--Selector Table View Controller-->
+        <!--ID - Selector-->
         <scene sceneID="LK3-nl-ydB">
             <objects>
                 <tableViewController id="Jw8-aI-dL5" customClass="SelectorTableViewController" customModule="TestForWork" customModuleProvider="target" sceneMemberID="viewController">
@@ -64,13 +64,13 @@
                             <outlet property="delegate" destination="Jw8-aI-dL5" id="FJB-4b-jwO"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="QxY-nx-7CX"/>
+                    <navigationItem key="navigationItem" title="ID - Selector" id="QxY-nx-7CX"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zmj-dd-0Fs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1734" y="540"/>
         </scene>
-        <!--Picture View Controller-->
+        <!--ID - Picture-->
         <scene sceneID="UUb-xe-U5v">
             <objects>
                 <viewController id="Il0-BJ-9Bs" customClass="PictureViewController" customModule="TestForWork" customModuleProvider="target" sceneMemberID="viewController">
@@ -80,6 +80,8 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="questionmark.app.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ABo-Rh-H9r">
                                 <rect key="frame" x="20" y="117" width="280" height="211.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.0039215686269999999" green="0.0039215686269999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQl-Yv-GnB">
                                 <rect key="frame" x="16" y="350" width="288" height="36"/>
@@ -100,7 +102,7 @@
                             <constraint firstItem="dAL-rW-Mfb" firstAttribute="trailing" secondItem="ABo-Rh-H9r" secondAttribute="trailing" constant="20" id="maB-0x-16g"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="XOL-X9-Z8e"/>
+                    <navigationItem key="navigationItem" title="ID - Picture" id="XOL-X9-Z8e"/>
                     <connections>
                         <outlet property="imageView" destination="ABo-Rh-H9r" id="msI-lA-6sE"/>
                         <outlet property="textLabel" destination="YQl-Yv-GnB" id="xzX-J5-giq"/>

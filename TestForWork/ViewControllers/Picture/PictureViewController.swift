@@ -8,9 +8,7 @@
 import UIKit
 
 class PictureViewController: UIViewController {
-    
-    var receivedData: InternalData!
-    
+        
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textLabel: UILabel!
     
@@ -18,8 +16,13 @@ class PictureViewController: UIViewController {
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.style = .large
+        activityIndicator.color = .white
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
         return activityIndicator
     }()
+    
+    var viewModel: PictureViewModelProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,16 +33,13 @@ class PictureViewController: UIViewController {
     }
     
     private func initialSetup() {
-        title = "picture"
+        
+        textLabel.text = "Some text"
         
         imageView.layer.cornerRadius = 15
         imageView.contentMode = .scaleAspectFit
         
-        activityIndicator.startAnimating()
-        activityIndicator.hidesWhenStopped = true
-        
         imageView.addSubview(activityIndicator)
-        
         NSLayoutConstraint.activate([
             activityIndicator.topAnchor.constraint(
                 equalTo: view.topAnchor,
@@ -47,22 +47,18 @@ class PictureViewController: UIViewController {
             ),
             activityIndicator.leadingAnchor.constraint(
                 equalTo: view.leadingAnchor,
-                constant: view.bounds.width / 2 - 10
+                constant: view.bounds.width / 2 - 20
             )
         ])
     }
     
     private func setupUI() {
-        textLabel.text = receivedData.text
         
-        DispatchQueue.global(qos: .utility).async {
-            guard let imageData = NetworkManager.shared.fetchImage(urlString: self.receivedData.url ?? "") else {
-                return
-            }
-            DispatchQueue.main.async {
-                self.imageView.image = UIImage(data: imageData)
-                self.activityIndicator.stopAnimating()
-            }
+        textLabel.text = viewModel.name
+        
+        viewModel.getImageData { imageData in
+            self.imageView.image = UIImage(data: imageData)
+            self.activityIndicator.stopAnimating()
         }
     }
 }

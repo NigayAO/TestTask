@@ -9,25 +9,27 @@ import UIKit
 
 class SelectorTableViewController: UITableViewController {
     
-    var receivedData: InternalData!
+    var viewModel: SelectorTableViewModelProtocol!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "selector"
-        print(receivedData!)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        receivedData.variants?.count ?? 0
+        viewModel.numbersOfItems
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "selector", for: indexPath)
-        let variant = receivedData.variants?[indexPath.row]
+        
+        let variant = viewModel.variants[indexPath.row]
+        
         var content = cell.defaultContentConfiguration()
-        content.text = variant?.text
-        content.secondaryText = "ID - \(variant?.id ?? 0)"
+        content.text = variant.text
+        content.secondaryText = "ID - \(variant.id)"
         cell.contentConfiguration = content
+        
         return cell
     }
     
