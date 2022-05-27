@@ -10,16 +10,16 @@ import UIKit
 class SelectorTableViewController: UITableViewController {
     
     var viewModel: SelectorTableViewModelProtocol!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "selector"
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.numbersOfItems
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "selector", for: indexPath)
         

@@ -35,18 +35,15 @@ class MainTableViewModel: MainTableViewModelProtocol {
     var segueSelector: String {
         "withSelector"
     }
-        
+    
     func fetchData(completion: @escaping() -> Void) {
-        NetworkManager.shared.fetchData { result in
-            switch result {
-            case .success(let data):
-                self.arrayOfData = data.data
-                self.cellElements = data.view
-                DispatchQueue.main.async {
-                    completion()
-                }
-            case .failure(let error):
-                print(error)
+        
+        NetworkManager.shared.fetchNewData { data in
+            self.arrayOfData = data.data
+            self.cellElements = data.view
+            
+            DispatchQueue.main.async {
+                completion()
             }
         }
     }
@@ -56,7 +53,6 @@ class MainTableViewModel: MainTableViewModelProtocol {
         for item in arrayOfData {
             if item.name == name {
                 data = item.data
-                
             }
         }
         return data

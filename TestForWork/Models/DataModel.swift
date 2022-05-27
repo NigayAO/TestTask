@@ -24,10 +24,10 @@ struct InternalData: Codable {
     let variants: [Variant]?
     
     enum CodingKeys: String, CodingKey {
-            case text, url
-            case selectedID = "selectedId"
-            case variants
-        }
+        case text, url
+        case selectedID = "selectedId"
+        case variants
+    }
 }
 
 struct Variant: Codable {

@@ -6,12 +6,7 @@
 //
 
 import Foundation
-
-enum NetworkError: Error {
-    case invalidURL
-    case noData
-    case descriptionError
-}
+import Alamofire
 
 class NetworkManager {
     static let shared = NetworkManager()
@@ -19,27 +14,18 @@ class NetworkManager {
     private let urlString = "https://pryaniky.com/static/json/sample.json"
     
     private init() {}
-        
-    func fetchData(completion: @escaping(Result<IncomeData, NetworkError>) -> Void) {
-        guard let url = URL(string: urlString) else {
-            completion(.failure(.invalidURL))
-            return
-        }
-        
-        URLSession.shared.dataTask(with: url) { data, _, _ in
-            guard let data = data else {
-                completion(.failure(.noData))
-                return
+    
+    func fetchNewData(completion: @escaping(IncomeData) -> Void) {
+        AF.request(urlString)
+            .validate()
+            .responseDecodable(of: IncomeData.self) { response in
+                switch response.result {
+                case .success(let receivedData):
+                    completion(receivedData)
+                case .failure(let error):
+                    print(error)
+                }
             }
-            
-            do {
-                let receivedData = try JSONDecoder().decode(IncomeData.self, from: data)
-                completion(.success(receivedData))
-                
-            } catch {
-                completion(.failure(.descriptionError))
-            }
-        }.resume()
     }
     
     func fetchImage(urlString: String) -> Data? {

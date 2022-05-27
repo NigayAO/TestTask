@@ -8,7 +8,7 @@
 import UIKit
 
 class MainTableViewController: UITableViewController {
-        
+    
     private var viewModel: MainTableViewModelProtocol! {
         didSet {
             viewModel.fetchData {
@@ -16,10 +16,10 @@ class MainTableViewController: UITableViewController {
             }
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = MainTableViewModel()        
+        viewModel = MainTableViewModel()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -34,16 +34,16 @@ class MainTableViewController: UITableViewController {
             selectorTVC.viewModel = sender as? SelectorTableViewModelProtocol
         }
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.numberOfCells
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "data", for: indexPath)
         
         let titleForCell = viewModel.cellElements[indexPath.row]
-
+        
         var content = cell.defaultContentConfiguration()
         content.text = titleForCell
         cell.contentConfiguration = content
