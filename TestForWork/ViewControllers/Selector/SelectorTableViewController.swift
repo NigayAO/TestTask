@@ -11,11 +11,6 @@ class SelectorTableViewController: UITableViewController {
     
     var viewModel: SelectorTableViewModelProtocol!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = "selector"
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.numbersOfItems
     }

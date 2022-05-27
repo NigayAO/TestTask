@@ -26,9 +26,7 @@ class PictureViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initialSetup()
-        
         setupUI()
     }
     
@@ -53,7 +51,6 @@ class PictureViewController: UIViewController {
     }
     
     private func setupUI() {
-        
         textLabel.text = viewModel.name
         
         viewModel.getImageData { imageData in
