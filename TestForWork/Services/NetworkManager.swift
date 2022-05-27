@@ -33,7 +33,6 @@ class NetworkManager {
             }
             
             do {
-                
                 let receivedData = try JSONDecoder().decode(IncomeData.self, from: data)
                 completion(.success(receivedData))
                 

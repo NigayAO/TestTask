@@ -13,24 +13,22 @@ class TableViewController: UITableViewController {
     var array = [String]()
     var selectedCell: InternalData!
     
-    private let segueHZ = "withHZ"
     private let seguePicture = "withImage"
     private let segueSelector = "withSelector"
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Test Task"
         fetchData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         switch segue.identifier {
-        case segueHZ:
-            guard let hzVC = segue.destination as? HZViewController else { return }
-            hzVC.receivedData = selectedCell
+            
         case seguePicture:
             guard let pictureVC = segue.destination as? PictureViewController else { return }
             pictureVC.receivedData = selectedCell
+            
         default:
             guard let selectorTVC = segue.destination as? SelectorTableViewController else { return }
             selectorTVC.receivedData = selectedCell
@@ -43,26 +41,29 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "data", for: indexPath)
+        
         let example = array[indexPath.row]
 
         var content = cell.defaultContentConfiguration()
         content.text = example
-        
         cell.contentConfiguration = content
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectCell = array[indexPath.row]
-        print(selectCell)
+        
         for item in data.data {
             if item.name == selectCell {
                 selectedCell = item.data
             }
         }
+        
         switch selectCell {
         case "hz":
-            performSegue(withIdentifier: segueHZ, sender: self)
+            guard let text = selectedCell.text else { return }
+            showAlert(title: selectCell, message: text)
         case "picture":
             performSegue(withIdentifier: seguePicture, sender: self)
         default:
@@ -87,5 +88,12 @@ extension TableViewController {
                 print(error)
             }
         }
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: "ID - \(title)", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Close", style: .default)
+        alert.addAction(action)
+        present(alert, animated: true)
     }
 }
